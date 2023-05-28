@@ -21,7 +21,7 @@ async function getAllHero(req, res) {
   const { page } = req.query;
   try {
     const allHerous = await pool.query(
-      `select * from superhero order by hero_id limit 5 offset ${
+      `select * from superhero order by hero_id desc limit 5 offset ${
         (+page - 1) * 5
       }`
     );
@@ -32,6 +32,7 @@ async function getAllHero(req, res) {
       data: JSON.stringify(allHerous.rows),
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       code: 500,
       status: "error",
