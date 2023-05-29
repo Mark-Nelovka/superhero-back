@@ -2,19 +2,10 @@ import pkg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 const { Pool } = pkg;
-const {
-  SERVER_USER,
-  SERVER_HOST,
-  SERVER_DATABASE,
-  SERVER_PASSWORD,
-  SERVER_PORT,
-} = process.env;
+const { CONNECTION_BD } = process.env;
 const pool = new Pool({
-  user: SERVER_USER,
-  host: SERVER_HOST,
-  database: SERVER_DATABASE,
-  password: SERVER_PASSWORD,
-  port: SERVER_PORT,
+  connectionString: CONNECTION_BD,
+  ssl: true,
 });
 
 async function getHeroById(req, res) {
