@@ -27,7 +27,7 @@ async function updateHero(req, res) {
   }
   if (!file && !files) {
     try {
-      const updateHero = await pool.query(`
+      await pool.query(`
       update superhero set ${Object.entries(body)
         .map(
           ([key, value]) =>
